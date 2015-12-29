@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link href="css/dashboard.css" rel="stylesheet">
+      
+
+<title>Uber | Good Bye</title>
+<style>
+     
+      .nav-sidebar> li.active > a,
+
+.nav-sidebar> li.active > a:hover,
+
+.nav-sidebar > li.active > a:focus
+{
+ background:#1EACC7;
+}
+.nav-sidebar > li{
+border: solid 1px #fff;
+}
+</style>
+
+
+<body >
+ <nav class="navbar navbar-inverse navbar-fixed-top disabled" style="background-color:#00001a">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand"  href="/">U B E R</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Logout</a></li>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+   <div class="container-fluid" style="width:100%; height:100%;">
+   <div class="row" style="width:100%; height:100%;">
+   <div class="col-sm-3 col-md-2 sidebar" >
+          <img class="img-circle" style="margin:0 0 0 -12px;height:200px;width:200px;border:1px solid #D3D6DB " data-ng-src = "./img/{{profile_pic}}"/>
+          <ul class="nav nav-sidebar">
+          
+            <li class="active"><a data-toggle="tab" href="#startRide">Good Bye <span class="sr-only">(current)</span></a></li>
+            <li><a class="disabled" data-toggle="tab" href="">My Trips</a></li>
+            <li><a class="disabled" data-toggle="tab" href="">Profile</a></li>
+            <li><a  class="disabled" href="" role="button">Logout</a></li>
+          </ul>
+          </div>
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="width:100%; height:100%;">
+		
+		<div class="tab-content" style="width:100%; height:100%;">
+			<div id="startRide" class="tab-pane fade in active" style="width:100%; height:100%;">
+    <h2 class="sub-header">Good Bye  </h2>
+    <h4>Expecting to see you seen</h4>
+    </div>
+    
+
+	</div>
+    </div>
+   
+    </div>
+   
+    </div> 
+    
+	
+
+			
+			
+    
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+
+
+</body>
+</html>

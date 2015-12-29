@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Uber</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<style>
+  .has-error .form-control {
+border:1px solid #f00;
+background: #ffe5e5;
+} 
+
+.has-error .control-label,
+
+.has-error .alert
+ {
+color:red;
+} 
+.red
+{
+color:red;
+}
+.alert
+ {
+color:red;
+} 
+
+ 
+ 
+</style>
+<body style="background-color:#00001a">
+
+<div class="container">
+  <br><br><br><br>
+<div class="row">
+
+
+
+<div class="col-md-4"></div>
+
+ <div class="col-md-4" style= "display: block;">
+
+
+
+	<div data-ng-app="loginCustApp" data-ng-controller="loginCustController">
+          <form   class="form-vertical"  name="loginCust" novalidate>
+
+            		<h1 style="color:#fff; text-align:center; font-size:40px;">U B E R </h1><hr>
+		
+<div style = "font-size:16px; color:#fff;" class="form-group required" data-ng-class="{
+                    'has-error': (loginCust.email.$touched||loginCust.email.$dirty|| loginCust.submitted) && loginCust.email.$invalid,
+                    'has-success': loginCust.email.$dirty && loginCust.email.$valid}">
+                    <div class="alert alert-danger"  data-ng-show="serverMessage"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>{{serverMessage}}</div>
+           
+                <label class=" control-label" for="email">Email</label>
+                <input class="form-control" type="email" value=""  data-ng-model="customer.email" name="email" id="email" placeholder="name@example.com" data-ng-pattern="/\S+@\S+\.\S+/" required>
+                <div class="alert alert-danger" data-ng-show="(loginCust.submitted||loginCust.email.$dirty) && loginCust.email.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Invalid Email Address</div>
+                <div class="alert alert-danger"  data-ng-show="(loginCust.submitted||loginCust.email.$touched) && loginCust.email.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Email is required.</div>
+              </div>
+		 <div style = "font-size:16px; color:#fff;" class="form-group required " data-ng-class="{
+                    'has-error': (loginCust.password.$touched||loginCust.password.$dirty||loginCust.submitted) && loginCust.password.$invalid,
+                    'has-success': loginCust.password.$dirty && loginCust.password.$valid}">
+                <label  class=" control-label" for="password">Password</label>
+                <input class="form-control" type="password" value=""  data-ng-model="customer.password" name="password" id="password"  data-ng-pattern="/[a-zA-Z0-9]{5,}/" placeholder="At least 5 characters" required>
+                 <div class="alert alert-danger" data-ng-show="(loginCust.submitted||loginCust.password.$dirty) && loginCust.password.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Password should be at least 5 characters</div>
+                <div class="alert alert-danger"  data-ng-show="(loginCust.submitted||loginCust.password.$touched) && loginCust.password.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Password required.</div>
+              </div>
+		<div class="form-group">
+                   <button type="submit" class="btn btn-lg btn-info btn-block" style=" font-size:16px;" data-ng-click="loginCustomer()">LOG IN</button>
+           </div>
+	</form>
+</div>
+</div>
+</div>
+
+</div>
+</body>
+<script>
+  var app = angular.module('loginCustApp', []);
+  app.controller('loginCustController', function ($http,$scope,$parse) 
+  {       
+  
+     
+    $scope.loginCustomer=function(){
+      if($scope.loginCust.$invalid){
+        $scope.loginCust.submitted=true;
+      }
+      
+      else{
+        $http({
+            method: 'POST',
+            url: '/loginCustomer',
+            data: $scope.customer
+          }).
+            then(function(response) { 
+              
+              window.location.assign('/customerhome');
+                
+      		},function(response){
+                  
+                      $scope.serverMessage=response.data;
+                     
+             
+      }); 
+      } 
+    }
+  });
+</script>
+</html>

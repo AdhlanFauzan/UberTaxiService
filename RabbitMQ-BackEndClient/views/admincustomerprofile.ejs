@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>ADMIN</title>
+
+
+</head>
+
+<body ng-app = "" ng-controller = "appController">
+
+	<div class="container">
+
+		
+		<div class="row">
+
+			<h2>customer PROFILE AS REQUESTED</h2>
+
+			
+				
+				{{customer.customer_id}} {{customer.c_first_name}} {{customer.c_last_name}}
+							
+			
+			
+			
+		</div>
+
+	</div>
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>		
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+    <script>
+        function appController($scope, $http) {
+        	
+        	$scope.customer = [];
+        	
+        	alert("getting profile..");
+       		$http({method: 'GET', url: '/admin_getcustomerprofile'}).then(function successCallback(response) {
+    		    
+       			$scope.customer = response.data[0];
+       			//alert("$scope.customer is : " + JSON.stringify($scope.customer));
+       			
+       			//console.log(JSON.stringify(response.data));
+        			
+        	}, function errorCallback(response) {});  
+       		
+		};
+    </script>
+    
+	
+	
+	
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

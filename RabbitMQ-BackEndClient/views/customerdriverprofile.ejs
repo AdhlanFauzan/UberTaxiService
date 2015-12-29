@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Driver Info</title>
+
+
+</head>
+
+<body ng-app = "" ng-controller = "appController">
+
+	<div class="container">
+
+		
+		<div class="row">
+
+			<h2>DRIVER PROFILE AS REQUESTED</h2>
+				
+				<img data-ng-src = "./media/{{profile_pic}}"/>
+				
+				<br><br>
+			<label> First Name {{driver.d_first_name}} </label><br><br>
+			 <label>Last Name {{driver.d_last_name}}</label>
+				
+				
+				
+
+	</div>
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>		
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+    <script>
+        function appController($scope, $http) {
+        	
+        	$scope.driver = [];
+        	$scope.profile_pic = "";
+        	
+        	alert("getting profile..");
+       		$http({method: 'GET', url: '/customer_getdriverprofile'}).then(function successCallback(response) {
+    		    
+       			alert(JSON.stringify(response.data));
+       			console.log(response.data);
+       			$scope.driver = response.data[0];
+       			$scope.driver = $scope.driver[0];
+       			$scope.profile_pic = response.data[1].d_image;
+       			alert($scope.profile_pic);
+       			
+       			//alert("$scope.driver is : " + JSON.stringify($scope.driver));
+       			
+       			//console.log(JSON.stringify(response.data));
+        			
+        	}, function errorCallback(response) {});  
+       		
+       		
+       		
+		};
+    </script>
+    
+	
+	
+	
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

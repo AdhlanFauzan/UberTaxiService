@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Genuitec</title>
+	<atom:link href="https://www.genuitec.com/feed/" rel="self" type="application/rss+xml" />
+	<link>https://www.genuitec.com</link>
+	<description>The Cloud Control Company</description>
+	<lastBuildDate>Mon, 16 Nov 2015 23:59:01 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=4.3.1</generator>
+	<item>
+		<title>Genuitec at EclipseCon Europe 2015</title>
+		<link>https://www.genuitec.com/genuitec-at-eclipse-con-europe-2015/</link>
+		<comments>https://www.genuitec.com/genuitec-at-eclipse-con-europe-2015/#comments</comments>
+		<pubDate>Tue, 10 Nov 2015 22:52:37 +0000</pubDate>
+		<dc:creator><![CDATA[Rocio Trujillo]]></dc:creator>
+				<category><![CDATA[General]]></category>
+		<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[CODE]]></category>
+		<category><![CDATA[developer]]></category>
+		<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[EUROPE]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=457647</guid>
+		<description><![CDATA[<p>Hello fellow developers!Last week we had the honor to participate at EclipseCon Europe 2015, this time in Ludwigsburg, Germany! (Not too shabby!)Needless to say, we had a wonderful time there. During our time at EclipseCon we were able to show demos of our newest product family addition “Webclipse”, and all the very useful features that [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/genuitec-at-eclipse-con-europe-2015/">Genuitec at EclipseCon Europe 2015</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/genuitec-at-eclipse-con-europe-2015/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Creating a Custom Mobile Hangman Game with MyEclipse</title>
+		<link>https://www.genuitec.com/creating-custom-mobile-hangman-game/</link>
+		<comments>https://www.genuitec.com/creating-custom-mobile-hangman-game/#comments</comments>
+		<pubDate>Tue, 03 Nov 2015 10:34:11 +0000</pubDate>
+		<dc:creator><![CDATA[aaronlonin]]></dc:creator>
+				<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[How-to's]]></category>
+		<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[debug]]></category>
+		<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[pdt]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=456943</guid>
+		<description><![CDATA[<p>The following tutorial shows you how to create a customized mobile Hangman game using MyEclipse 2015 CI 16. You will learn how to customize the hangman game with your own text, word list, and image. Then you will test the game in MyEclipse, build the mobile app, and try it on your phone. Imagine the [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/creating-custom-mobile-hangman-game/">Creating a Custom Mobile Hangman Game with MyEclipse</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/creating-custom-mobile-hangman-game/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Creating Custom Editors in Sapphire</title>
+		<link>https://www.genuitec.com/creating-custom-editors-in-sapphire/</link>
+		<comments>https://www.genuitec.com/creating-custom-editors-in-sapphire/#comments</comments>
+		<pubDate>Tue, 27 Oct 2015 15:02:24 +0000</pubDate>
+		<dc:creator><![CDATA[dimitry]]></dc:creator>
+				<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[Planet Eclipse]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=455838</guid>
+		<description><![CDATA[<p>In a previous article we discussed how to create custom bindings for xml editing with Eclipse Sapphire. Custom bindings are a rather powerful way of xml editing customization, but sometimes we need to customize editing on the UI side. In this case we need to use custom editors. Let’s see how this is accomplished.An Example [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/creating-custom-editors-in-sapphire/">Creating Custom Editors in Sapphire</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/creating-custom-editors-in-sapphire/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>New releases, new integrations, happier developers!</title>
+		<link>https://www.genuitec.com/new-releases-new-integrations-happier-developers/</link>
+		<comments>https://www.genuitec.com/new-releases-new-integrations-happier-developers/#comments</comments>
+		<pubDate>Fri, 23 Oct 2015 17:13:29 +0000</pubDate>
+		<dc:creator><![CDATA[Rocio Trujillo]]></dc:creator>
+				<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[Webclipse]]></category>
+		<category><![CDATA[coders]]></category>
+		<category><![CDATA[coding]]></category>
+		<category><![CDATA[Developers]]></category>
+		<category><![CDATA[gerrit]]></category>
+		<category><![CDATA[slack]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=455852</guid>
+		<description><![CDATA[<p>Webclipse 2015 CI 5 &#38; MyEclipse 2015 CI 16Hello developers! Thanks to your feedback and our hard working team&#8217;s continuous focus on making your coding experience more peaceful and joyful, we bring you Webclipse CI 5 and MyEclipse CI 16. We know you&#8217;ll be excited about the cool new integrations, check this out!  Slack IntegrationWebclipse [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/new-releases-new-integrations-happier-developers/">New releases, new integrations, happier developers!</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/new-releases-new-integrations-happier-developers/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>MyEclipse Twitter Chat  &#8211; OCT 20th Recap</title>
+		<link>https://www.genuitec.com/myeclipse-twitter-chat-oct-20th-recap/</link>
+		<comments>https://www.genuitec.com/myeclipse-twitter-chat-oct-20th-recap/#comments</comments>
+		<pubDate>Wed, 21 Oct 2015 14:27:46 +0000</pubDate>
+		<dc:creator><![CDATA[Rocio Trujillo]]></dc:creator>
+				<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[Webclipse]]></category>
+		<category><![CDATA[twitter]]></category>
+		<category><![CDATA[webclipse]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=456294</guid>
+		<description><![CDATA[<p>Here is the Twitter chat recap in case you missed it!Q1 It&#8217;s been a while since our last @MyEclipseIDE chat &#8211; what came out in the recent @MyEclipseIDE 2015 CI 15 release? A1. #JavaScript Debugging &#8211; you can now debug externally deployed projects, and they don’t have to be #JavaEE A1. Here&#8217;s a screenshot of [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/myeclipse-twitter-chat-oct-20th-recap/">MyEclipse Twitter Chat  &#8211; OCT 20th Recap</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/myeclipse-twitter-chat-oct-20th-recap/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Using Example Projects to Customize SDC</title>
+		<link>https://www.genuitec.com/using-example-projects-to-customize-sdc/</link>
+		<comments>https://www.genuitec.com/using-example-projects-to-customize-sdc/#comments</comments>
+		<pubDate>Thu, 15 Oct 2015 14:07:45 +0000</pubDate>
+		<dc:creator><![CDATA[jhugohr]]></dc:creator>
+				<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[Secure Delivery Center]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=454503</guid>
+		<description><![CDATA[<p>Are you an SDC user who is ready to push the boundaries and provide more value to fill your team&#8217;s specific needs?  Don’t know how to start? No worries, we’ve got you covered!We released a package that includes example projects to help you customize SDC. Download the package from http://gosecure.genuitec.com/SDC-Extended-Examples/. Once running, it configures your workspace [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/using-example-projects-to-customize-sdc/">Using Example Projects to Customize SDC</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/using-example-projects-to-customize-sdc/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>GapDebug Twitter Chat &#8211; October 6th Recap</title>
+		<link>https://www.genuitec.com/gapdebug-twitter-chat-october-6th-recap/</link>
+		<comments>https://www.genuitec.com/gapdebug-twitter-chat-october-6th-recap/#comments</comments>
+		<pubDate>Wed, 07 Oct 2015 15:29:07 +0000</pubDate>
+		<dc:creator><![CDATA[Rocio Trujillo]]></dc:creator>
+				<category><![CDATA[GapDebug]]></category>
+		<category><![CDATA[Genuitec]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=454440</guid>
+		<description><![CDATA[<p>Here is the Twitter chat recap in case you missed it!Q1. To kick things off, for those new to #phonegap hybrid app dev, what does @GapDebug bring to the mix?A1 @GapDebug is a free #crossplatform debugger for #cordova #iOS and #Android appls. A1 Recent updates added more app mgmt supt.A1 The current release is version [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/gapdebug-twitter-chat-october-6th-recap/">GapDebug Twitter Chat &#8211; October 6th Recap</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/gapdebug-twitter-chat-october-6th-recap/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Creating Custom Slack Commands with JAX-RS</title>
+		<link>https://www.genuitec.com/creating-custom-slack-commands-with-jax-rs/</link>
+		<comments>https://www.genuitec.com/creating-custom-slack-commands-with-jax-rs/#comments</comments>
+		<pubDate>Tue, 06 Oct 2015 19:46:29 +0000</pubDate>
+		<dc:creator><![CDATA[aaronlonin]]></dc:creator>
+				<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[How-to's]]></category>
+		<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[Planet Eclipse]]></category>
+		<category><![CDATA[debug]]></category>
+		<category><![CDATA[pdt]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=454354</guid>
+		<description><![CDATA[<p>Many teams, including ours, now use Slack for team collaboration. With Slack, you can communicate with other team members in an organized public chat room (called a channel), a private group, or send a direct message. The ability to archive these messages, and then search for specific conversations or files later, makes for a powerful [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/creating-custom-slack-commands-with-jax-rs/">Creating Custom Slack Commands with JAX-RS</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/creating-custom-slack-commands-with-jax-rs/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>2 Releases, 1 purpose: Improving your coding experience.</title>
+		<link>https://www.genuitec.com/2-releases-1-purpose-improving-your-coding-experience/</link>
+		<comments>https://www.genuitec.com/2-releases-1-purpose-improving-your-coding-experience/#comments</comments>
+		<pubDate>Tue, 06 Oct 2015 15:33:40 +0000</pubDate>
+		<dc:creator><![CDATA[Rocio Trujillo]]></dc:creator>
+				<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[Webclipse]]></category>
+		<category><![CDATA[programming]]></category>
+		<category><![CDATA[release]]></category>
+		<category><![CDATA[software]]></category>
+		<category><![CDATA[update]]></category>
+		<category><![CDATA[webclipse]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=454258</guid>
+		<description><![CDATA[<p>Webclipse 2015 CI4 &#38; MyEclipse CI15The GoodFirst of all, we would like to thank you for all your support and feedback on our newest product, Webclipse. We have been overwhelmed by the positive comments and tweets about it, so we are working hard everyday to improving it and make your coding experience even more enjoyable.The [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/2-releases-1-purpose-improving-your-coding-experience/">2 Releases, 1 purpose: Improving your coding experience.</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/2-releases-1-purpose-improving-your-coding-experience/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Debugging PHP with Eclipse PDT: A WordPress Example</title>
+		<link>https://www.genuitec.com/debugging-php-with-eclipse-pdt/</link>
+		<comments>https://www.genuitec.com/debugging-php-with-eclipse-pdt/#comments</comments>
+		<pubDate>Thu, 01 Oct 2015 15:01:16 +0000</pubDate>
+		<dc:creator><![CDATA[support-octavio]]></dc:creator>
+				<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[How-to's]]></category>
+		<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[Planet Eclipse]]></category>
+		<category><![CDATA[debug]]></category>
+		<category><![CDATA[pdt]]></category>
+		<category><![CDATA[php]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=453794</guid>
+		<description><![CDATA[<p>IntroductionIf you code PHP and are tired of fighting logging messages, Eclipse PHP Development Tools (PDT) can end the fight! Using Eclipse PDT to debug PHP isn’t as hard as you might think. Read on to see how a few simple steps can make your coding life so much easier!BackgroundOur portal uses WordPress, a powerful [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/debugging-php-with-eclipse-pdt/">Debugging PHP with Eclipse PDT: A WordPress Example</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/debugging-php-with-eclipse-pdt/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Spring Framework: @RestController vs @Controller</title>
+		<link>https://www.genuitec.com/spring-frameworkrestcontroller-vs-controller/</link>
+		<comments>https://www.genuitec.com/spring-frameworkrestcontroller-vs-controller/#comments</comments>
+		<pubDate>Mon, 28 Sep 2015 15:11:33 +0000</pubDate>
+		<dc:creator><![CDATA[Srivatsan Sundararajan]]></dc:creator>
+				<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[Planet Eclipse]]></category>
+		<category><![CDATA[json]]></category>
+		<category><![CDATA[ResponseBody]]></category>
+		<category><![CDATA[rest controller]]></category>
+		<category><![CDATA[Rest Web Services]]></category>
+		<category><![CDATA[Spring MVC]]></category>
+		<category><![CDATA[XML]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=453563</guid>
+		<description><![CDATA[<p>Spring MVC Framework and RESTSpring’s annotation based MVC framework simplifies the process of creating RESTful web services. The key difference between a traditional Spring MVC controller and the RESTful web service controller is the way the HTTP response body is created. While the traditional MVC controller relies on the View technology, the RESTful web service controller [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/spring-frameworkrestcontroller-vs-controller/">Spring Framework: @RestController vs @Controller</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/spring-frameworkrestcontroller-vs-controller/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Delivering Zend Studio</title>
+		<link>https://www.genuitec.com/delivering-zend-studio/</link>
+		<comments>https://www.genuitec.com/delivering-zend-studio/#comments</comments>
+		<pubDate>Thu, 24 Sep 2015 13:43:04 +0000</pubDate>
+		<dc:creator><![CDATA[ignaciom]]></dc:creator>
+				<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[Secure Delivery Center]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=453493</guid>
+		<description><![CDATA[<p>Zend Studio is a popular integration of Eclipse for PHP development. Although it has some specific Eclipse requirements, you can deliver it with Secure Delivery Center. In the following example, we use an Eclipse 4.4.2 Standard package and then mark it as RCP. Let’s get started!Deliver Zend Studio in SDCAccess the Get Packs wizard in [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/delivering-zend-studio/">Delivering Zend Studio</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/delivering-zend-studio/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>SDC Twitter Chat &#8211; Sep 22nd Recap</title>
+		<link>https://www.genuitec.com/sdc-twitter-chat-sep-22nd-recap/</link>
+		<comments>https://www.genuitec.com/sdc-twitter-chat-sep-22nd-recap/#comments</comments>
+		<pubDate>Wed, 23 Sep 2015 15:42:51 +0000</pubDate>
+		<dc:creator><![CDATA[Rocio Trujillo]]></dc:creator>
+				<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[Secure Delivery Center]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=453466</guid>
+		<description><![CDATA[<p>Here is the Twitter chat recap in case you missed it!Q1.Does SDC can deliver #Eclipse based third party IDE? A1. Yes with SDC you can deliver to your developers software like #springio’s STS or #ZendStudio.Q2. Could you provide any link and or documentation that Illustrates this? A2.Sure we actually have a forum post for each [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/sdc-twitter-chat-sep-22nd-recap/">SDC Twitter Chat &#8211; Sep 22nd Recap</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/sdc-twitter-chat-sep-22nd-recap/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Introduction to MQTT Protocol</title>
+		<link>https://www.genuitec.com/introduction-to-mqtt-protocol/</link>
+		<comments>https://www.genuitec.com/introduction-to-mqtt-protocol/#comments</comments>
+		<pubDate>Tue, 22 Sep 2015 18:04:09 +0000</pubDate>
+		<dc:creator><![CDATA[Wojciech Galanciak]]></dc:creator>
+				<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[Webclipse]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=453265</guid>
+		<description><![CDATA[<p>IntroductionThe Internet of Things (IoT) is a fast growing market. The general idea behind IoT it is to connect everything (clothes, devices, houses, public transport, medical devices, etc.) into a set of networks to raise precision, productivity or even define a completely new user experience. This article focuses on different applications of IoT technologies, integration [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/introduction-to-mqtt-protocol/">Introduction to MQTT Protocol</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/introduction-to-mqtt-protocol/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Eclipse Night London Rocked!</title>
+		<link>https://www.genuitec.com/eclipse-night-london-rocked/</link>
+		<comments>https://www.genuitec.com/eclipse-night-london-rocked/#comments</comments>
+		<pubDate>Mon, 21 Sep 2015 21:07:47 +0000</pubDate>
+		<dc:creator><![CDATA[Rocio Trujillo]]></dc:creator>
+				<category><![CDATA[Eclipse]]></category>
+		<category><![CDATA[General]]></category>
+		<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[developer]]></category>
+		<category><![CDATA[London]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=452920</guid>
+		<description><![CDATA[<p>We had an amazing time at Eclipse Night London. Questions were asked and most importantly questions were fully answered. We had amazing beer (all beer is amazing if you ask me) and enjoyed a great dinner. But most of all, we got to grow as a community of developers. Over 35 eclipse users gathered to [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/eclipse-night-london-rocked/">Eclipse Night London Rocked!</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		<wfw:commentRss>https://www.genuitec.com/eclipse-night-london-rocked/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk: enhanced
+Database Caching using apc
+Object Caching 2109/2371 objects using apc
+Content Delivery Network via resources.cloud.genuitec.com
+
+ Served from: www.genuitec.com @ 2015-11-16 22:49:12 by W3 Total Cache -->

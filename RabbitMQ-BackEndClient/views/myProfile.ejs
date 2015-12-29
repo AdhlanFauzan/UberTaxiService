@@ -1,0 +1,156 @@
+<div class="container col-md-8 col-xs-8 " style="border-left:1px solid #D3D6DB;border-right:1px solid #D3D6DB">
+
+   <form   class="form-vertical"  name="updateCustomer" novalidate>
+            <div class="row form-row">
+              <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+              <div class="form-group required "  data-ng-class="{
+                    'has-error': updateCustomer.submitted && updateCustomer.first_name.$invalid,
+                    'has-success':  updateCustomer.first_name.$valid}">
+              <label class=" control-label" for="first_name">First Name</label>
+                
+                    <input type="text" class="form-control" value="" data-ng-model="customer.c_first_name" name="first_name" id="first_name" placeholder="First Name" required>
+                      <div class="alert alert-danger"  data-ng-show="updateCustomer.submitted && updateCustomer.first_name.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Your First Name.</div>
+                  </div>
+                  </div>
+                   <div class="col-md-6 col-xs-6 md-push-left-half xs-push-left-half">
+                    <div class="form-group required "  data-ng-class="{
+                    'has-error': updateCustomer.submitted && updateCustomer.last_name.$invalid,
+                    'has-success':  updateCustomer.last_name.$valid}">
+                    <label class="control-label" for="last_name">Last Name</label>
+               
+                    <input type="text" class="form-control" data-ng-model="customer.c_last_name" value="" name="last_name" id="last_name" placeholder="Last Name" required>
+                      <div class="alert alert-danger"  data-ng-show="updateCustomer.submitted && updateCustomer.last_name.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Your Last Name.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row form-row">
+              <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+             
+              <div class="form-group required" data-ng-class="{
+                    'has-error': updateCustomer.submitted && updateCustomer.d_email.$invalid,
+                    'has-success':  updateCustomer.email.$valid}">
+                <label class=" control-label" for="email">Email</label>
+                <input class="form-control" type="email" value=""  data-ng-model="customer.c_email" name="email" id="email" placeholder="name@example.com" data-ng-pattern="/\S+@\S+\.\S+/" required>
+                <div class="alert alert-danger" data-ng-show="updateCustomer.submitted && updateCustomer.email.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Invalid Email Address</div>
+                <div class="alert alert-danger"  data-ng-show="updateCustomer.submitted && updateCustomer.email.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Email is required.</div>
+              </div>
+              </div>
+              <div class="col-md-6 col-xs-6 md-push-left-half xs-push-left-half">
+               <div class="form-group js-mobile-country required mobile-number" data-ng-class="{
+                    'has-error': updateCustomer.submitted && updateCustomer.mobile.$invalid,
+                    'has-success':updateCustomer.mobile.$valid}">
+                  <label class="control-label" for="mobile">Mobile Number</label>
+                 
+                  <input data-ng-model="customer.c_phonenumber" class="form-control"  maxlength="10" type="text" value="" name="mobile" id="mobile" data-ng-pattern="/^[1-9]{1}[0-9]{9}$/" placeholder="(201) 555-5555" required>
+                  <div class="alert alert-danger"  data-ng-show="updateCustomer.submitted && updateCustomer.mobile.$error.required">
+                  <span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>
+                  Your Mobile Number?
+                  </div>
+                  <div class="alert alert-danger" data-ng-show="updateCustomer.submitted && updateCustomer.mobile.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Mobile number Invalid</div>
+              </div>
+              </div>
+              </div>
+          
+              <div class="row form-row">
+                  <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+                      <div class="form-group required " data-ng-class="{
+                    'has-error': updateCustomer.submitted && updateCustomer.city.$invalid,
+                    'has-success':  updateCustomer.city.$valid}">
+                          <label class="control-label" for="city">City</label>
+                          <input class="form-control" data-ng-model="customer.c_city" type="text" value="" name="city" id="city" placeholder="City" required>
+                          <div class="alert alert-danger"  data-ng-show="updateCustomer.submitted && updateCustomer.city.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>City where you live.</div>
+                        </div>
+                      </div>
+                  <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+                       <div class="form-group required" data-ng-class="{
+                    'has-error': updateCustomer.submitted && updateCustomer.zipCode.$invalid,
+                    'has-success':  updateCustomer.zipCode.$valid}">
+                        <label class="control-label" for="zipcode">ZipCode</label>
+                        <input class="form-control" data-ng-model="customer.c_zipcode" type="text" value="" name="zipCode" id="zipCode" data-ng-pattern="^\\d{5}(-\\d{4})?$" placeholder="ZipCode" required>
+                        <div class="alert alert-danger"  data-ng-show="updateCustomer.submitted && updateCustomer.zipCode.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Postal Code is Required.</div>
+                        <div class="alert alert-danger" data-ng-show="updateCustomer.submitted && updateCustomer.zipCode.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Postal Code should be at least 5 digit format or 9 digit format</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row">
+                 
+
+               <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+                <div class="form-group required " data-ng-class="{
+                    'has-error':updateCustomer.submitted && updateCustomer.password.$invalid,
+                    'has-success': updateCustomer.password.$valid}">
+                <label  class=" control-label" for="password">Password</label>
+                <input class="form-control" type="password" value=""  data-ng-model="customer.c_password" name="password" id="password"  data-ng-pattern="/[a-zA-Z0-9]{5,}/" placeholder="At least 5 characters" required>
+                 <div class="alert alert-danger" data-ng-show="updateCustomer.submitted && updateCustomer.password.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Password should be at least 5 characters</div>
+                <div class="alert alert-danger"  data-ng-show="updateCustomer.submitted && updateCustomer.password.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Password required.</div>
+              </div>
+               </div>
+                <div class="form-group">
+                          <button type="submit" class="btn btn-info"  data-ng-click="updateCustomer()">Update Account</button>
+                    </div>
+              </div>
+               </form>
+            <div class="sub-header"></div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+          <!--  <form action="/uploadCustImage" method="POST" enctype="multipart/form-data"> 
+					<form enctype="multipart/form-data">
+					<label for="profile-photo" class="control-label">Profile Photo</label>
+					<img src="https://d1w2poirtb3as9.cloudfront.net/default.jpeg" width="50" height="50" class="img-circle" style="border:1px solid #D3D6DB">
+					<input type="file" file-model="picture" data-ng-model="picture"  id="profile-photo" name="picture" class="hidden">
+					<label for="profile-photo" class="btn-default active" style="border:1px solid #D3D6DB">Set Picture</label>
+					<button type="submit" data-ng-click="uploadImage()">Upload</button> 
+					</form>  -->
+					<form name="photo" id="imageUploadForm" enctype="multipart/form-data" >
+					<label for="imageBrowse" class="control-label">Profile Photo</label>
+					<img src="https://d1w2poirtb3as9.cloudfront.net/default.jpeg" width="50" height="50" class="img-circle" style="border:1px solid #D3D6DB">
+					<input type="file" file-model="picture"  id="imageBrowse" name="picture" class="hidden">
+					<label for="imageBrowse" class="btn-default active" style="border:1px solid #D3D6DB">Set Picture</label>
+    
+    <button type="submit" id="#uploadBtn" name="uploadBtn" >Upload</button>
+    </form>
+				<!-- 	<form  name="form">
+				 <input type="file" ngf-select ng-model="picture" name="picture"    
+             accept="image/*"  >
+  					<div class="btn btn-primary" data-ngf-select data-ng-model="picture" data-name="picture" data-ngf-pattern="'image/*'"
+    data-accept="image/*"  
+   >Select</div>
+    <button type="submit" data-ng-click="uploadImage(picture)">submit</button>
+    </form> -->
+					</div>
+           
+                <div class="col-md-6">
+                    <div class="form-group">
+                          <button type="submit" class="btn btn-info"  data-ng-click="deleteCustomer()">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+      
+
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#imageUploadForm").submit(function() {
+	var formData = new FormData(this);
+	
+	$.ajax({
+        type:'POST',
+        url:'/uploadCustImage',
+        data:formData,
+        cache:false,
+        contentType: false,
+        processData: false,
+        success:function(data){
+            console.log("success");
+            console.log(data);
+        },
+        error: function(data){
+            console.log("error");
+            console.log(data);
+        }
+    });
+	});
+	});
+</script>

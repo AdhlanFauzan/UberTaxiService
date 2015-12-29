@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Driver HOME</title>
+
+
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        /*margin: 0;*/
+        /*padding: 10%;*/
+      }
+      #map {
+        height: 70%;
+        margin: 20%;
+        /*padding: 20%;*/
+
+      }
+.controls {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+#pac-output {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-output:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+    </style>
+
+
+
+
+
+
+</head>
+
+<body ng-app = "" ng-controller = "appController">
+
+	<div class="container">
+
+		<div class="row">
+
+			<h2>HELLO DRIVER</h2>
+			
+		</div>
+		
+		
+		<input id="pac-input"  class="controls" type="text"  placeholder="choose pick-up location">
+     	<input id="pac-output"  class="controls" type="text" placeholder="choose destination">
+     	
+    	<div id="map"></div>
+		
+		<div>
+			
+			{{driver.driver_id}} {{driver.d_first_name}} {{driver.d_last_name}} {{driver.d_car_number}} 
+			<button ng-click = "driver_deleteself()">delete my account</button>
+		
+		</div>
+		
+		<form method = "GET" action = "/signout">
+			<button type = "submit">Sign Out</button>		
+		</form>	
+		
+		
+		
+		<div>
+			email <input ng-model = "driver.d_email">
+			firstname <input ng-model = "driver.d_first_name">
+			lastname <input ng-model = "driver.d_last_name">
+			address <input ng-model = "driver.d_address">
+			city <input ng-model = "driver.d_city">
+			state <input ng-model = "driver.d_state">
+			zipcode <input ng-model = "driver.d_zipcode">
+			phonenumber <input ng-model = "driver.d_phonenumber">
+			password <input ng-model = "driver.d_password">
+			car name <input ng-model = "driver.d_car_name">
+			car number <input ng-model = "driver.d_car_number">
+		
+		<button ng-click = "updatedriver()">Update driver record</button>
+		
+		</div>
+		
+		
+		
+		<form name="pet_form" action="/imageupload" method="POST" enctype="multipart/form-data" class="form-horizontal" novalidate style="padding:0 0 0 50px">
+     				
+     		Select image <input type="file" file-model="pt_file" name="pt_file" style="margin:0 0 0 -15px;">
+			<input type="submit" class="btn btn-primary login-btn" style="width:250px;margin:0 0 0 5px;" value="Upload Submit" name="Submit">
+         		
+		</form>
+		
+		<form action="/videoupload" method="post" enctype="multipart/form-data">
+          <label for="file">Select your video:</label>
+          <input type="file" file-model="movie" name="movie" />
+          <button type="submit">upload</button>
+        </form>
+		
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>		
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+    <script>
+    
+        function appController($scope, $http) {
+        	
+        	$scope.driver = {};
+        	
+        	
+            $http({method: 'GET', url: '/getdriverdetails'}).then(function successCallback(response) {
+            		    
+            		alert("received driver details : " + JSON.stringify(response));
+            		$scope.driver = response.data[0];
+            			    	
+            }, function errorCallback(response) {});
+            
+            
+            
+			$scope.updatedriver = function(){
+            	
+            	alert("updating record");
+            	$http({method: 'POST', url: '/updatedriver', data: $scope.driver}).then(function successCallback(response) {
+        		    
+            		alert("driverinfo updated..");            		
+            			    	
+            	}, function errorCallback(response) {});
+            }
+            
+            
+            
+            $scope.driver_deleteself = function(){
+            	
+            	alert("deleting self");
+            	$http({method: 'GET', url: '/driver_deleteself'}).then(function successCallback(response) {
+        		    
+            		alert("driver self deleted..");
+            		window.location.assign('/driverhome');
+            			    	
+            	}, function errorCallback(response) {});
+            }
+        };
+    </script>
+    
+    
+    
+    
+    
+    
+    
+     <script>
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -33.8688, lng: 151.2195},
+    zoom: 13
+  });
+
+  var pickUpelement = document.getElementById('pac-input');
+  var dropOffElement = document.getElementById('pac-output');
+
+  var autocompletePickUp = new google.maps.places.Autocomplete(pickUpelement);
+  autocompletePickUp.bindTo('bounds', map);
+
+  var autocompleteDropoff = new google.maps.places.Autocomplete(dropOffElement);
+  autocompleteDropoff.bindTo('bounds', map);
+
+  var infowindow = new google.maps.InfoWindow();
+  var marker = new google.maps.Marker({
+    map: map,
+    anchorPoint: new google.maps.Point(0, -29)
+  });
+
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+          initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          map.setCenter(initialLocation);
+          marker.setPosition(initialLocation);
+          marker.setVisible(true);
+            infowindow.setContent('<a href = "http://www.google.com" target = "_blank">driver</a>');
+             infowindow.open(map, marker);
+      });
+}
+
+var directionsService = new google.maps.DirectionsService;
+var directionsDisplay = new google.maps.DirectionsRenderer({
+    map: map,
+    draggable: true
+});
+
+
+  autocompletePickUp.addListener('place_changed', function() {
+     infowindow.close();
+    marker.setVisible(false);
+    var place = autocompletePickUp.getPlace();
+    if (!place.geometry) {
+      window.alert("Autocomplete's returned place contains no geometry");
+      return;
+    }
+
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(14);
+    }
+    marker.setIcon(({
+       url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(35, 35)
+    }));
+    marker.setPosition(place.geometry.location);
+    marker.setVisible(true);
+
+    var address = '';
+    if (place.address_components) {
+      address = [
+        (place.address_components[0] && place.address_components[0].short_name || ''),
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+
+    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    infowindow.open(map, marker);
+  });
+
+  autocompleteDropoff.addListener('place_changed', function() {
+
+      var infowindow = new google.maps.InfoWindow();
+      var marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29)
+      });
+    // infowindow.close();
+    marker.setVisible(false);
+    var place = autocompleteDropoff.getPlace();
+    if (!place.geometry) {
+      window.alert("Autocomplete's returned place contains no geometry");
+      return;
+    }
+
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(14);
+    }
+    marker.setIcon(({
+       url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(35, 35)
+    }));
+    marker.setPosition(place.geometry.location);
+    marker.setVisible(true);
+
+    var address = '';
+    if (place.address_components) {
+      address = [
+        (place.address_components[0] && place.address_components[0].short_name || ''),
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+
+    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    infowindow.open(map, marker);
+    calculateAndDisplayRoute(
+        directionsDisplay, directionsService, null, null, map);
+  });
+
+}
+
+function calculateAndDisplayRoute(directionsDisplay, directionsService,
+    markerArray, stepDisplay, map) {
+
+  console.log(document.getElementById('pac-input').value);
+  console.log(document.getElementById('pac-output').value);
+
+  directionsService.route({
+    origin:  document.getElementById('pac-input').value,
+    destination:  document.getElementById('pac-output').value,
+    travelMode: google.maps.TravelMode.DRIVING
+  }, function(response, status) {
+    if (status === google.maps.DirectionsStatus.OK) {
+    directionsDisplay.setDirections(response);
+    console.log(response.routes);
+    var route = response.routes[0];
+    var leg = route.legs[0];
+    var distance = leg.distance.text;
+    var duration = leg.duration.text;
+
+    console.log(distance);
+    console.log(duration);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+}
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5f0wiFTAtOTip6bSkPtDDPAno6AV4Oc&signed_in=true&libraries=places&callback=initMap"
+        async defer></script>
+        
+        
+        
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+
+<table class="table table-striped">
+	<thead>
+      	<tr>
+      		<th> </th>
+      		<th>Pick Up Date</th>
+        	<th>Driver</th>
+        	<th>Fare</th>
+        	<th>City</th>
+        
+      	</tr>
+    </thead>
+		<tr data-ng-repeat = "ride in rides">
+			<td><span class="glyphicon glyphicon-chevron-right"  data-toggle="collapse" data-target="#bill"></span> </td>
+ 			<td> <p>{{ride.pickUpDate | date:'shortDate'}}</p></td>
+			<td> <p>{{ride.driver}}</p></td>
+			<td> <p>{{ride.fare | currency}}</p></td>
+			<td> <p>{{ride.city}}</p></td>
+		</tr>
+		<tr><td>
+		
+  <div id="bill" class="collapse">
+  <img  data-ng-src = "https://maps.googleapis.com/maps/api/staticmap?center=37.3327457,-121.87972969999998&zoom=12&size=200x150&&path=color:0x0000ff|weight:5|37.3327457,-121.87972969999998|37.37841679999999,
+  -121.83008269999999&key=AIzaSyDSFkR9xLSIdSHkebYbh04W6tCGeTS8inA"/>
+  
+  <table class="table table-striped">
+  <thead>
+      	<tr>
+      		<th>Driver Name</th>
+      		<th>Source City</th>
+        	<th>Destination City</th>
+        	<th>Base Fare</th>
+        	<th>Distance Fare</th>
+        	<th>Time Fare</th>
+        	<th>Total Fare</th>
+        	<th>Trip Distance</th>
+        	<th>Duration</th>
+        	<th>Avg Speed</th>      	</tr>
+    </thead>
+		<tr data-ng-repeat = "ride in rides">
+			
+ 			<td> <p>{{ride.driver_first_name}}</p></td>
+			<td> <p>{{ride.source_city}}</p></td>
+			<td> <p>{{ride.city}}</p></td>
+			<td> <p>{{ride.base_fare | currency}}</p></td>
+			<td> <p>{{ride.distance_fare | currency}}</p></td>
+			<td> <p>{{ride.time_fare | currency}}</p></td>
+			<td> <p>{{ride.fare | currency}}</p></td>	
+			<td> <p>{{ride.distance}}</p></td>
+			<td> <p>{{ride.duration}}</p></td>
+			<td> <p>{{ride.speed}}</p></td>						
+		</tr>
+  </table>
+  </div>
+		</td></tr>
+</table>		

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Uber</title>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<style>
+.has-error .form-control {
+	border: 1px solid #f00;
+	background: #ffe5e5;
+}
+
+.has-error .control-label, .has-error .alert {
+	color: red;
+}
+
+.red {
+	color: red;
+}
+</style>
+<body style="background-color: #00001a">
+
+	<div class="container">
+		<br>
+		<br>
+		<br>
+		<br>
+		<div class="row">
+
+
+
+			<div class="col-md-4"></div>
+
+			<div class="col-md-4" style="display: block;">
+
+
+
+				<div data-ng-app="loginDriverApp"
+					data-ng-controller="loginDriverController">
+					<form class="form-vertical" name="loginDrive" data-ng-submit="loginDrive.$valid && loginDriver()" novalidate>
+
+						<h1 style="color: #fff; text-align: center; font-size: 40px;">U
+							B E R</h1>
+						<hr>
+
+						<div style="font-size: 16px; color: #fff;"
+							class="form-group required"
+							data-ng-class="{
+                    'has-error': (loginDrive.email.$touched||loginDrive.email.$dirty|| loginDrive.submitted) && loginDrive.email.$invalid,
+                    'has-success': loginDrive.email.$dirty && loginDrive.email.$valid}">
+                    <div class="alert alert-danger"  data-ng-show="serverMessage"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>{{serverMessage}}</div>
+							<label class=" control-label" for="email">Email</label> 
+							<input class="form-control" type="email" value="" data-ng-model="driver.email" name="email" id="email"
+								placeholder="name@example.com" data-ng-pattern="/\S+@\S+\.\S+/"
+								required>
+							<div class="alert alert-danger"
+								data-ng-show="(loginDrive.submitted||loginDrive.email.$dirty) && loginDrive.email.$error.pattern ">
+								<span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Invalid
+								Email Address
+							</div>
+							<div class="alert alert-danger"
+								data-ng-show="(loginDrive.submitted||loginDrive.email.$touched) && loginDrive.email.$error.required">
+								<span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Email
+								is required.
+							</div>
+						</div>
+						<div style="font-size: 16px; color: #fff;"
+							class="form-group required "
+							data-ng-class="{
+                    'has-error': (loginDrive.password.$touched||loginDrive.password.$dirty||loginDrive.submitted) && loginDrive.password.$invalid,
+                    'has-success': loginDrive.password.$dirty && loginDrive.password.$valid}">
+							<label class=" control-label" for="password">Password</label> 
+							<input class="form-control" type="password" value="" data-ng-model="driver.password" name="password" id="password"
+								data-ng-pattern="/[a-zA-Z0-9]{5,}/"
+								placeholder="At least 5 characters" required>
+							<div class="alert alert-danger"
+								data-ng-show="(loginDrive.submitted||loginDrive.password.$dirty) && loginDrive.password.$error.pattern ">
+								<span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Password
+								should be at least 5 characters
+							</div>
+							<div class="alert alert-danger"
+								data-ng-show="(loginDrive.submitted||loginDrive.password.$touched) && loginDrive.password.$error.required">
+								<span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Password
+								required.
+							</div>
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-lg btn-info btn-block" style=" font-size:16px;"
+								data-ng-click="loginDrive.submitted=true">LOG IN</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+
+<script>
+	var app = angular.module('loginDriverApp', []);
+	app.controller('loginDriverController', function($http, $scope, $parse,$window) {
+
+		$scope.loginDriver = function() {
+		
+				$http({
+					method : 'POST',
+					url : '/loginDriver',
+					data : $scope.driver
+				}).then(
+						
+						function(response) {
+							
+							window.location.href='/driverhome';
+
+						});
+			
+		}
+	});
+</script>
+</html>

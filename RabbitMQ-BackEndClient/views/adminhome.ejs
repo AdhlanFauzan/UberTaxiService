@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>ADMIN</title>
+
+
+</head>
+
+<body ng-app = "" ng-controller = "appController">
+
+	<div class="container">
+
+		
+		<div class="row">
+
+			<h2>HELLO ADMIN, Here are you requests</h2>
+
+			<div ng-repeat = "x in pendingdrivers">
+				
+				<a href = "" ng-click = "admin_driverprofile(x.driver_id)">{{x.driver_id}}</a>
+				<p>{{x.d_first_name}} {{x.d_last_name}}</p>
+				<button ng-click = "approvedriver(x.driver_id); approvedriverbutton = false;" ng-disabled = "!approvedriverbutton">
+					<span ng-show = "approvedriverbutton">Approve Driver</span>
+					<span ng-show = "!approvedriverbutton">Driver Approved</span>				
+				</button>				
+							
+			</div>
+			
+			
+			<h2>HELLO ADMIN, Here are APPROVED DRIVERS</h2>
+
+			<div ng-repeat = "x in approveddrivers">
+				
+				<a href = "" ng-click = "admin_driverprofile(x.driver_id)">{{x.driver_id}}</a>
+				<p>{{x.d_first_name}} {{x.d_last_name}}</p>
+				
+				<button ng-click = "deletedriver(x.driver_id); deletedriverbutton = false;" ng-disabled = "!deletedriverbutton" >
+					<span ng-show = "deletedriverbutton">Delete Driver</span>
+					<span ng-show = "!deletedriverbutton">Driver Deleted</span>					
+				</button>				
+											
+			</div>
+			
+			
+			<h2>HELLO ADMIN, Here are PENDING CUSTOMERS</h2>
+
+			<div ng-repeat = "x in pendingcustomers">
+				
+				<a href = "" ng-click = "admin_customerprofile(x.customer_id)">{{x.customer_id}}</a>
+				<p>{{x.c_first_name}} {{x.c_last_name}}</p>
+				
+				<button ng-click = "approvecustomer(x.customer_id); approvecustomerbutton = false;" ng-disabled = "!approvecustomerbutton">
+					<span ng-show = "approvecustomerbutton">Approve Customer</span>
+					<span ng-show = "!approvecustomerbutton">Customer Approved</span>				
+				</button>
+											
+			</div>
+			
+			
+			<h2>HELLO ADMIN, Here are APPROVED CUSTOMERS</h2>
+
+			<div ng-repeat = "x in approvedcustomers">
+				
+				<a href = "" ng-click = "admin_customerprofile(x.customer_id)">{{x.customer_id}}</a>
+				<p>{{x.c_first_name}} {{x.c_last_name}}</p>
+				
+				<button ng-click = "deletecustomer(x.customer_id); deletecustomerbutton = false;" ng-disabled = "!deletecustomerbutton" >
+					<span ng-show = "deletecustomerbutton">Delete Customer</span>
+					<span ng-show = "!deletecustomerbutton">Customer Deleted</span>								
+				</button>
+											
+			</div>
+			
+			<div>
+			
+				<input ng-model = "driversearchtext"></input>
+				Select driver Search Attribute
+				<input type = "radio" ng-init = "driversearchattribute = 'firstname'" ng-model = "driversearchattribute" value = "firstname" ng-checked = "true">First Name</input>
+				<input type = "radio" ng-model = "driversearchattribute" value = "lastname">Last Name</input>
+				<input type = "radio" ng-model = "driversearchattribute" value = "city">City</input>
+				
+				<button ng-click = "driversearch(driversearchtext, driversearchattribute)">Search Driver</button>
+				
+			</div>
+			
+			<h2>SEARCH RESULT</h2>
+			
+			<div ng-repeat = "x in driversearchresult">
+				
+				<a href = "" ng-click = "admin_driverprofile(x.driver_id)">{{x.driver_id}}</a>
+				<p>{{x.d_first_name}} {{x.d_last_name}}</p>
+				<button ng-click = "deletedriver(x.driver_id); deletedriverbutton = false;" ng-disabled = "!deletedriverbutton" >
+					<span ng-show = "deletedriverbutton">Delete Driver</span>
+					<span ng-show = "!deletedriverbutton">Driver Deleted</span>					
+				</button>	
+			
+			</div>
+			
+			
+		</div>
+	</div>
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>		
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+    <script>
+        function appController($scope, $http) {
+        	
+        	$scope.pendingdrivers = [];
+        	$scope.approveddrivers = [];
+        	$scope.driversearchresult = [];
+        	
+        	$scope.pendingcustomers = [];
+        	$scope.approvedcustomers = [];   
+        	        	
+        	$scope.approvedriverbutton = true;
+        	$scope.deletedriverbutton = true;
+        	$scope.approvecustomerbutton = true;
+        	$scope.deletecustomerbutton = true;
+        	
+        	
+       		$http({method: 'GET', url: '/getpendingdrivers'}).then(function successCallback(response) {
+    		    
+       			$scope.pendingdrivers = response.data;
+       			//alert("Pending Drivers received : " + JSON.stringify(response.data));
+       			console.log(JSON.stringify(response.data));
+        			
+        	}, function errorCallback(response) {});  
+			
+       		
+       		
+			$http({method: 'GET', url: '/getapproveddrivers'}).then(function successCallback(response) {
+    		    
+       			$scope.approveddrivers = response.data;
+       			//alert("APPROVED Drivers received : " + JSON.stringify(response.data));
+       			console.log(JSON.stringify(response.data));
+        			
+        	}, function errorCallback(response) {});  
+       		
+       		
+			
+			$http({method: 'GET', url: '/getpendingcustomers'}).then(function successCallback(response) {
+    		    
+       			$scope.pendingcustomers = response.data;
+       			console.log(JSON.stringify(response.data));
+        			
+        	}, function errorCallback(response) {});  
+			
+			
+			
+			
+			$http({method: 'GET', url: '/getapprovedcustomers'}).then(function successCallback(response) {
+    		    
+       			$scope.approvedcustomers = response.data;
+       			//alert("customers : " + JSON.stringify(response.data));
+       			console.log(JSON.stringify(response.data));
+        			
+        	}, function errorCallback(response) {}); 
+			
+       		
+			
+			$scope.deletecustomer = function(customer_id){
+       			
+				//alert("deleting cus.....");
+       			$http({method: 'POST', url: '/deletecustomer', data: {"customer_id": customer_id}}).then(function successCallback(response){
+       				
+       				alert("customer deleted");
+       				
+       			}, function errorCallback(response){});
+       		}
+       		
+       		
+			       		
+       		$scope.approvedriver = function(driver_id){
+       			
+       			//alert("driver id" + driver_id);
+       			$http({method: 'POST', url: '/approvedriver', data: {"driver_id": driver_id}}).then(function successCallback(response){
+       				
+       				alert("driver approved");
+       				
+       			}, function errorCallback(response){});
+       		}
+       		
+			$scope.approvecustomer = function(customer_id){
+       			
+       			//alert("driver id" + driver_id);
+       			$http({method: 'POST', url: '/approvecustomer', data: {"customer_id": customer_id}}).then(function successCallback(response){
+       				
+       				alert("customer approved");
+       				
+       			}, function errorCallback(response){});
+       		}
+       		
+       		
+			$scope.deletedriver = function(driver_id){
+       			
+       			$http({method: 'POST', url: '/deletedriver', data: {"driver_id": driver_id}}).then(function successCallback(response){
+       				
+       				alert("driver deleted");
+       				
+       			}, function errorCallback(response){});
+       		}
+       		
+			
+			
+			$scope.admin_driverprofile = function(driver_id){
+       			
+				alert("going to driver profile...");
+       			$http({method: 'POST', url: '/admin_driverprofile', data: {"driver_id": driver_id}}).then(function successCallback(response){
+       				
+       				//alert("going to driver profile");
+       				window.location.assign("/admin_driverprofile");
+       				
+       			}, function errorCallback(response){});
+       		}
+			
+			
+			$scope.admin_customerprofile = function(customer_id){
+       			
+				alert("going to customer profile...");
+       			$http({method: 'POST', url: '/admin_customerprofile', data: {"customer_id": customer_id}}).then(function successCallback(response){
+       				
+       				//alert("going to customer profile");
+       				window.location.assign("/admin_customerprofile");
+       				
+       			}, function errorCallback(response){});
+       		}
+			
+			
+			$scope.driversearch = function(){
+				
+				alert("Searching Driver : " + $scope.driversearchtext + "  " + $scope.driversearchattribute);
+				
+       			$http({method: 'POST', url: '/admin_searchdriver', data: {"driversearchtext": $scope.driversearchtext, "driversearchattribute": $scope.driversearchattribute}}).then(function successCallback(response){
+       				
+       				alert("done");
+       				alert(JSON.stringify(response));
+       				$scope.driversearchresult = response.data;
+       				//window.location.assign("/admin_customerprofile");
+       				
+       			}, function errorCallback(response){});
+								
+			}
+			
+		};
+    </script>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

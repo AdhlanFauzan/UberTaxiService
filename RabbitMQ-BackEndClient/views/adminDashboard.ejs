@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Uber | Admin  Home</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link href="css/dashboard.css" rel="stylesheet">
+  </head>
+<style>
+ html, body {
+        height: 100%;
+        /*margin: 0;*/
+        /*padding: 10%;*/
+      }
+      .nav-sidebar> li.active > a,
+
+.nav-sidebar> li.active > a:hover,
+
+.nav-sidebar > li.active > a:focus
+{
+ background:#1EACC7;
+}
+.nav-sidebar > li{
+border: solid 1px #fff;
+}
+       #map {
+        height: 80%;
+        margin-right: 400;
+
+        /*margin-bottom: 50;*/
+        /*padding: 20%;*/
+
+      }  
+</style>
+  <body data-ng-app="adminHomeApp" data-ng-controller="adminHomeController">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#00001a">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand"  href="#">U B E R</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Logout</a></li>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid" style="width:100%; height:100%;">
+   <div class="row" style="width:100%; height:100%;">
+        <div class="col-sm-3 col-md-2 sidebar" >
+   <img class="img-circle" style="margin:0 0 0 -10px;height:200px;width:200px"  data-ng-src = "./img/{{profile_pic}}"/>
+          <ul class="nav nav-sidebar">
+          
+            <li class="active"><a data-toggle="tab" href="#pCustomers">Pending Customers <span class="sr-only">(current)</span><span class="badge badge-success">{{count}}</span></a></li>
+            <li><a data-toggle="tab" href="#pDrivers">Pending Drivers<span class="badge badge-success">{{countD}}</span></a></li>
+            <li><a data-toggle="tab" href="#allCustomers">List of all Customers</a></li>
+            <li><a data-toggle="tab" href="#allDrivers">List of all Drivers</a></li>
+            <li><a data-toggle="tab" href="#revenue">Revenue Stats</a></li>
+            <li><a data-toggle="tab" href="#rideAnalysis">Ride Analysis</a></li>
+            <li><a data-toggle="tab" href="#bill">Billing Information</a></li>
+            <li><a  href="/signout" role="button">Logout</a></li>
+          </ul>
+          
+			</div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="width:100%; height:100%;">
+		
+		<div class="tab-content" style="width:100%; height:100%;">
+			<div id="pCustomers" class="tab-pane fade in active">
+			<h2 class="sub-header">Approve Customers</h2>
+				<div data-ng-repeat = "x in pendingcustomers">
+				
+				<a href = "" data-ng-click = "admin_customerprofile(x.customer_id)">{{x.customer_id}}</a>
+				<p>{{x.c_first_name}} {{x.c_last_name}}</p>
+				
+				<button data-ng-click = "approvecustomer(x.customer_id); approvecustomerbutton = false;" data-ng-disabled = "!approvecustomerbutton">
+					<span data-ng-show = "approvecustomerbutton">Approve Customer</span>
+					<span data-ng-show = "!approvecustomerbutton">Customer Approved</span>				
+				</button>
+											
+			</div>
+				
+			</div>
+			<div id="pDrivers" class="tab-pane">
+			<div data-ng-repeat = "x in pendingdrivers">
+				
+				<a href = "" data-ng-click = "admin_driverprofile(x.driver_id)">{{x.driver_id}}</a>
+				<p>{{x.d_first_name}} {{x.d_last_name}}</p>
+				<button ng-click = "approvedriver(x.driver_id); approvedriverbutton = false;" ng-disabled = "!approvedriverbutton">
+					<span ng-show = "approvedriverbutton">Approve Driver</span>
+					<span ng-show = "!approvedriverbutton">Driver Approved</span>				
+				</button>				
+							
+			</div>
+			</div>
+        	<div id="allDrivers" class="tab-pane">
+        	<h2 class="sub-header">List of Drivers In System</h2>
+        	<table class="table table-striped">
+				<thead>
+      				<tr>
+      					<th>Name of Driver</th>
+        				<th>Driver Background</th>
+        				<th>Email ID</th>
+        				<th>Delete</th>
+      				</tr>
+    			</thead>
+				<tr data-ng-repeat="driver in approveddrivers">
+ 					<td> <p>{{driver.d_first_name}} {{driver.d_last_name}}</p></td>
+					<td> <a href = "" data-ng-click = "admin_driverprofile(driver.driver_id)">{{driver.driver_id}}</a></td>
+					<td> <p>{{driver.d_email}}</p></td>
+					<td> 
+						<button type="submit" class="btn btn-success" data-ng-click = "deletedriver(driver.driver_id); deletedriverbutton = false;" data-ng-disabled = "!deletedriverbutton" >
+							<span data-ng-show = "deletedriverbutton">Delete Driver</span>
+							<span class="btn btn-danger"  data-ng-show = "!deletedriverbutton">Driver Deleted</span>					
+						</button>
+					</td>
+				</tr>
+			</table>
+
+        	</div>
+        	<div id="bill" class="tab-pane">
+        	<h2 class="sub-header">Billing Information</h2>
+        	<div data-ng-include data-src="'bills'"></div>
+        	</div>
+        	<div id="allCustomers" class="tab-pane">
+        	<h2 class="sub-header">List of Customers In System</h2>
+        	<table class="table table-striped">
+				<thead>
+      				<tr>
+      					<th>Name of Customer</th>
+        				<th>Customer Background</th>
+        				<th>Email ID</th>
+        				<th>Delete</th>
+      				</tr>
+    			</thead>
+				<tr data-ng-repeat="driver in approvedcustomers">
+ 					<td> <p>{{driver.c_first_name}} {{driver.c_last_name}}</p></td>
+					<td> <a href = "" data-ng-click = "admin_driverprofile(driver.customer_id)">{{driver.customer_id}}</a></td>
+					<td> <p>{{driver.c_email}}</p></td>
+					<td> 
+						<button type="submit" class="btn btn-success" data-ng-click = "deletecustomer(driver.customer_id); deletecustomerbutton = false;" data-ng-disabled = "!deletecustomerbutton" >
+							<span data-ng-show = "deletecustomerbutton">Delete Customer</span>
+							<span class="btn btn-danger"  data-ng-show = "!deletedriverbutton">Customer Deleted</span>					
+						</button>
+					</td>
+				</tr>
+			</table>
+
+        	</div>
+        	<div id="revenue" class="tab-pane" style="width:100%; height:100%;">
+        	<h2 class="sub-header">Revenue Stats</h2>
+        	
+        	  <p>
+      	<select ng-model="selectedValue" ng-options="val for val in cities">
+        <option value="">Select</option>
+     	 </select>
+     	 </p>
+        
+        	<button type="submit" class="btn btn-success" data-ng-click ="showrevenuestats()">show analysis</button>
+        	
+        	<h3>Total Rides today :{{totalridescount}}</h3>
+        	        	<h3>rides per customer :{{ridespercustomer}}</h3>
+        	        	<h3>rides per driver :{{ridesperdriver}}</h3>
+        	        	<h3>total revenue :{{revenueForday}}</h3>
+        	
+        	</div>        	
+        	<div id="rideAnalysis" class="tab-pane" style="width:100%; height:100%;">
+        	<h2 class="sub-header">Ride Analysis</h2>
+        	<button type="submit" class="btn btn-success" data-ng-click ="showRideAnalysis()">show analysis</button>
+			<div id="map"></div>
+        	</div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+ <script type="text/javascript" src= "../resources/statsMap.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgYPa3rFTfvxYkwI6EQxD12w5zKmbC4I0&signed_in=true&libraries=places&callback=initMap"
+        async defer></script>
+<script>
+var app = angular.module('adminHomeApp', []);
+app.controller('adminHomeController', function ($http,$scope,$parse) 
+{      
+	$scope.pendingdrivers = [];
+	$scope.approveddrivers = [];
+	$scope.driversearchresult = [];
+	
+	$scope.pendingcustomers = [];
+	$scope.approvedcustomers = [];   
+	$scope.cities = ["san jose", "santa clara", "las vegas", "Los angeles"];
+	var pick_up_time = new Date();
+	function ArrNoDupe(a) {
+	    var temp = {};
+	    for (var i = 0; i < a.length; i++)
+	        temp[a[i]] = true;
+	    var r = [];
+	    for (var k in temp)
+	        r.push(k);
+	    return r;
+	}
+	
+	function getDateString( date) {
+	    var tzoffset = date.getTimezoneOffset() * 60000; //offset in milliseconds
+		var localISOTime = (new Date(date - tzoffset)).toISOString().substring(0, 10);
+	    return localISOTime;
+	}
+
+	$scope.showrevenuestats = function() {
+		
+		console.log($scope.selectedValue);
+	    var pickUpTimeString = getDateString(pick_up_time);
+
+	    $http({
+	        method: 'Post',	
+	            url: '/admin_showrevenuestats',
+	            data:{
+	        "pick_up_time":pickUpTimeString,
+	        "city":$scope.selectedValue
+	        }
+	         }).success(function(response){
+	             alert("Request Sent Successfully");
+	             console.log(response);
+	             console.log(JSON.stringify(response));
+	            
+	             var responseArray = response;
+	             if(responseArray.length <= 0) {
+	            	 alert ("This city has no rides");
+	            	 $scope.revenueForday = 0;
+	 	            $scope.ridesperdriver = 0;
+	 	            $scope.ridespercustomer = 0;
+	 	           $scope.totalridescount = 0;
+	            	 return;
+	             }
+	             var revenueForArea = 0;
+	             $scope.totalridescount = responseArray.length;
+	             var customers = [];
+	             var drivers = [];
+	             
+	             var flightPlanCoordinates = [];
+	             
+	             for(var i = 0; i < responseArray.length ; i++) {
+	            	 var rideObject = responseArray[i];
+	            	 
+	            	 var pickuplat = rideObject["pickup_location_lat"];
+	            	 var pickuplng = rideObject["pickup_location_long"];
+	            	 var droplat = rideObject["drop_location_lat"];
+	            	 var droplng = rideObject["drop_location_long"];
+
+	            	 
+	            	   var flightPlanCoordinates = [
+										{lat: Number(pickuplat), lng: Number(pickuplng)},
+										{lat: Number(droplat), lng:Number(droplng)}
+										];
+	            	   var flightPath = new google.maps.Polyline({
+	            		   path: flightPlanCoordinates,
+	            		   geodesic: true,
+	            		   strokeColor: '#FF0000',
+	            		   strokeOpacity: 1.0,
+	            		   strokeWeight: 2
+	            	   });
+	            	   
+	            	   
+	            	   flightPath.setMap(map);
+	            	 
+	            	 
+	            	 revenueForArea = revenueForArea + parseInt(rideObject["total_fare"]);
+	            	 customers.push(rideObject["customer_id"]);
+	            	 drivers.push(rideObject["driver_id"]);
+	             }
+	            var uniqueCustomers = ArrNoDupe(customers);
+	            var uniqueDrivers = ArrNoDupe(drivers);
+	            
+	            $scope.revenueForday = revenueForArea;
+	            $scope.ridesperdriver = $scope.totalridescount/ uniqueDrivers.length;
+	            $scope.ridespercustomer = $scope.totalridescount/ uniqueCustomers.length;
+
+	            
+	            console.log(uniqueCustomers);
+	            console.log(uniqueDrivers);
+	            
+	            }).error(function(error){
+	            alert("error in maps");
+	        });
+	    }
+		
+	
+ 	$scope.showRideAnalysis = function() {
+		
+	    var pickUpTimeString = getDateString(pick_up_time);
+
+	    $http({
+	        method: 'Post',
+	            url: '/admin_rideanalysis',
+	        
+	         }).success(function(response){
+	             alert("Request Sent Successfully");
+	             console.log(response);
+	             console.log(JSON.stringify(response));
+	             var responseArray = response;
+	             var totalrides = responseArray.length;
+	            
+	             
+	             var flightPlanCoordinates = [];
+	             
+	             for(var i = 0; i < responseArray.length ; i++) {
+	            	 var rideObject = responseArray[i];
+	            	 
+	            	 var pickuplat = rideObject["pickup_location_lat"];
+	            	 var pickuplng = rideObject["pickup_location_long"];
+	            	 var droplat = rideObject["drop_location_lat"];
+	            	 var droplng = rideObject["drop_location_long"];
+
+	            	 
+	            	   var flightPlanCoordinates = [
+										{lat: Number(pickuplat), lng: Number(pickuplng)},
+										{lat: Number(droplat), lng:Number(droplng)}
+										];
+	            	   var flightPath = new google.maps.Polyline({
+	            		   path: flightPlanCoordinates,
+	            		   geodesic: true,
+	            		   strokeColor: '#FF0000',
+	            		   strokeOpacity: 1.0,
+	            		   strokeWeight: 2
+	            	   });
+	            	   
+	            	   
+	            	   flightPath.setMap(map);
+
+	             }
+	            
+	            }).error(function(error){
+	            alert("error in maps");
+	        });
+	    }
+	
+	$scope.profile_pic="default.jpeg";
+$scope.approvedriverbutton = true;
+$scope.deletedriverbutton = true;
+$scope.approvecustomerbutton = true;
+$scope.deletecustomerbutton = true;
+	$http({
+        method: 'GET',
+        url: '/getCustomerDetails',
+        
+      }). then(function(response) {
+    	  $scope.profile_pic=response.data.msg;
+      });
+	$scope.count=0;
+	$http({method: 'GET', url: '/getpendingcustomers'}).then(function successCallback(response) {
+	    angular.forEach(response.data,function(count){
+	    	$scope.count=$scope.count+1;
+	    })
+		$scope.pendingcustomers = response.data;
+		
+		
+}, function errorCallback(response) {}); 
+	$http({method: 'GET', url: '/getapproveddrivers'}).then(function successCallback(response) {
+
+		$http({method: 'GET', url: '/getapprovedcustomers'}).then(function successCallback(response) {
+		    
+   			$scope.approvedcustomers = response.data;
+   			//alert("customers : " + JSON.stringify(response.data));
+   			console.log(JSON.stringify(response.data));
+    			
+    	}, function errorCallback(response) {}); 
+		
+$scope.approveddrivers = response.data;
+			//alert("APPROVED Drivers received : " + JSON.stringify(response.data));
+			console.log(JSON.stringify(response.data));
+			
+	}, function errorCallback(response) {}); 
+
+	$scope.deletecustomer = function(customer_id){
+			
+		//alert("deleting cus.....");
+			$http({method: 'POST', url: '/deletecustomer', data: {"customer_id": customer_id}}).then(function successCallback(response){
+				
+				
+				
+			}, function errorCallback(response){});
+		}
+	$scope.deletedriver = function(driver_id){
+			
+			$http({method: 'POST', url: '/deletedriver', data: {"driver_id": driver_id}}).then(function successCallback(response){
+				
+				alert("driver deleted");
+				
+			}, function errorCallback(response){});
+		}
+
+		$http({method: 'GET', url: '/getpendingdrivers'}).then(function successCallback(response) {
+	    	$scope.countD=0;
+			$scope.pendingdrivers = response.data;
+			angular.forEach(response.data,function(count){
+		    	$scope.countD=$scope.countD+1;
+		    });
+			console.log(JSON.stringify(response.data));
+			
+	}, function errorCallback(response) {}); 
+
+		$scope.deletecustomer = function(customer_id){
+   			
+			//alert("deleting cus.....");
+   			$http({method: 'POST', url: '/deletecustomer', data: {"customer_id": customer_id}}).then(function successCallback(response){
+   				
+   				alert("customer deleted");
+   				
+   			}, function errorCallback(response){});
+   		}
+		
+		$scope.approvecustomer = function(customer_id){
+   			
+   			//alert("driver id" + driver_id);
+   			$http({method: 'POST', url: '/approvecustomer', data: {"customer_id": customer_id}}).then(function successCallback(response){
+   				
+   				alert("customer approved");
+   				
+   			}, function errorCallback(response){});
+   		}
+   		
+});
+
+</script>
+</html>

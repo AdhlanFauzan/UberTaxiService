@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Uber | Driver  Home</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link href="css/dashboard.css" rel="stylesheet">
+  </head>
+<style>
+	html, body {
+        height: 100%;
+        /*margin: 0;*/
+        /*padding: 10%;*/
+      }
+.nav-sidebar> li.active > a,
+
+.nav-sidebar> li.active > a:hover,
+
+.nav-sidebar > li.active > a:focus
+{
+ background:#1EACC7;
+}
+.nav-sidebar > li{
+border: solid 1px #fff;
+}
+  #map {
+        height: 80%;
+        margin-right: 400;
+
+        /*margin-bottom: 50;*/
+        /*padding: 20%;*/
+
+      } 
+.controls {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+    position: relative;
+    top: 2px;
+ 
+    z-index: 5;
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width:25%;
+  }
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+#pac-output {
+    position: relative;
+    top: 2px;
+    
+    z-index: 5;
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  width:25%;
+ 
+  text-overflow: ellipsis;
+ 
+}
+
+#pac-output:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+/*#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}*/
+
+#right-panel {
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#right-panel select, #right-panel input {
+  font-size: 15px;
+}
+
+#right-panel select {
+  width: 100%;
+}
+
+#right-panel i {
+  font-size: 12px;
+}
+
+      #right-panel {
+        height: 100%;
+        float: right;
+        width: 390px;
+        overflow: auto;
+      }
+
+
+      #floating-panel {
+        background: #fff;
+        padding: 5px;
+        font-size: 14px;
+        font-family: Arial;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+        display: none;
+      }
+</style>
+</style>
+  <body data-ng-app="driverHomeApp" data-ng-controller="driverHomeController">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#00001a">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand"  href="#">U B E R</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Logout</a></li>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid" style="width:100%; height:100%;">
+      <div class="row" style="width:100%; height:100%;">
+        <div class="col-sm-3 col-md-2 sidebar" >
+          <img class="img-circle" style="margin:0 0 0 -10px;height:200px;width:200px"  data-ng-src = "./img/{{profile_pic}}"/>
+          <ul class="nav nav-sidebar">
+          
+            <li class="active"><a data-toggle="tab" href="#startRide">Ready to Drive <span class="sr-only">(current)</span></a></li>
+            <li><a data-toggle="tab" data-ng-click="myRides()" href="#myTrips">My Trips</a></li>
+            <li><a data-toggle="tab" href="#myProfile">Profile</a></li>
+            <li><a  href="/signout" role="button">Logout</a></li>
+          </ul>
+          
+			</div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="width:100%; height:100%;">
+			<div class="tab-content" style="width:100%; height:100%;">
+			<div id="startRide" class="tab-pane fade in active" style="width:100%; height:100%;">
+    <div class="sub-header"><h2>Ready to Drive  </h2> <button type="submit" style="background:#1EACC7;" class="btn btn-primary active" data-ng-click = "setLocation()">Set Location</button>
+    
+    <div data-ng-show="currentride">
+    <table class="table table-striped">
+	<thead>
+      	<tr>
+      		
+      		<th>First Name</th>
+        	<th>Source City</th>
+        	<th>Destination City</th>
+        	<th>Select</th>
+        
+      	</tr>
+    </thead>
+		<tr >
+			<td> <p>{{currentRide.customer_first_name}}</p></td>
+			<td> <p>{{currentRide.source_city}}</p></td>
+			<td> <p>{{currentRide.destination_city}}</p></td>
+			
+			<td> <button type="submit" style="background:#1EACC7;" class="btn btn-primary active" data-ng-click = "endRide()">End Ride</button></td>
+		</tr>
+			
+		</table> 
+    </div>
+    </div>
+      <input id="pac-input"  class="controls" type="text"
+      placeholder="choose pick-up location">
+      
+    <div id = "map">
+    </div>
+    
+
+	
+    </div>
+    <div id="myTrips" class="tab-pane">
+        	<h2 class="sub-header">My Trips</h2>
+			<div data-ng-include data-src="'driverTrips'"></div>
+        	</div>
+    <div id="myProfile" class="tab-pane">
+        	<h2 class="sub-header" padding-left="30px" ="30px" align ="center">Your Profile</h2>
+			
+			
+			<div>
+			
+				<div class="container col-md-8 col-xs-8 " style="border-left:1px solid #D3D6DB;border-right:1px solid #D3D6DB">
+
+   <form   class="form-vertical"  name="updateDriver" novalidate>
+            <div class="row form-row">
+              <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+              <div class="form-group required "  data-ng-class="{
+                    'has-error': updateDriver.submitted && updateDriver.first_name.$invalid,
+                    'has-success':  updateDriver.first_name.$valid}">
+              <label class=" control-label" for="first_name">First Name</label>
+                
+                    <input type="text" class="form-control" value="" data-ng-model="driver.d_first_name" name="first_name" id="first_name" placeholder="First Name" required>
+                      <div class="alert alert-danger"  data-ng-show="updateDriver.submitted && updateDriver.first_name.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Your First Name.</div>
+                  </div>
+                  </div>
+                   <div class="col-md-6 col-xs-6 md-push-left-half xs-push-left-half">
+                    <div class="form-group required "  data-ng-class="{
+                    'has-error': updateDriver.submitted && updateDriver.last_name.$invalid,
+                    'has-success':  updateDrier.last_name.$valid}">
+                    <label class="control-label" for="last_name">Last Name</label>
+               
+                    <input type="text" class="form-control" data-ng-model="driver.d_last_name" value="" name="last_name" id="last_name" placeholder="Last Name" required>
+                      <div class="alert alert-danger"  data-ng-show="updateDriver.submitted && updateDriver.last_name.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Your Last Name.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row form-row">
+              <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+             
+              <div class="form-group required" data-ng-class="{
+                    'has-error': updateDriver.submitted && updateDriver.d_email.$invalid,
+                    'has-success':  updateCustomer.email.$valid}">
+                <label class=" control-label" for="email">Email</label>
+                <input class="form-control" type="email" value=""  data-ng-model="driver.d_email" name="email" id="email" placeholder="name@example.com" data-ng-pattern="/\S+@\S+\.\S+/" required>
+                <div class="alert alert-danger" data-ng-show="updateDriver.submitted && updateCustomer.email.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Invalid Email Address</div>
+                <div class="alert alert-danger"  data-ng-show="updateDriver.submitted && updateCustomer.email.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Email is required.</div>
+              </div>
+              </div>
+              <div class="col-md-6 col-xs-6 md-push-left-half xs-push-left-half">
+               <div class="form-group js-mobile-country required mobile-number" data-ng-class="{
+                    'has-error': updateDriver.submitted && updateDriver.mobile.$invalid,
+                    'has-success':updateDriver.mobile.$valid}">
+                  <label class="control-label" for="mobile">Mobile Number</label>
+                 
+                  <input data-ng-model="driver.d_phonenumber" class="form-control"  maxlength="10" type="text" value="" name="mobile" id="mobile" data-ng-pattern="/^[1-9]{1}[0-9]{9}$/" placeholder="(201) 555-5555" required>
+                  <div class="alert alert-danger"  data-ng-show="updateDriver.submitted && updateDriver.mobile.$error.required">
+                  <span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>
+                  Your Mobile Number?
+                  </div>
+                  <div class="alert alert-danger" data-ng-show="updateDriver.submitted && updateDriver.mobile.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Mobile number Invalid</div>
+              </div>
+              </div>
+              </div>
+              <div class="row form-row">
+              <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+             
+              <div class="form-group required" data-ng-class="{
+                    'has-error': updateDriver.submitted && updateDriver.d_address.$invalid,
+                    'has-success':  updateCustomer.email.$valid}">
+                <label class=" control-label" for="email">Address</label>
+                <input class="form-control" type="email" value=""  data-ng-model="driver.d_email" name="email" id="email" placeholder="name@example.com" data-ng-pattern="/\S+@\S+\.\S+/" required>
+                <div class="alert alert-danger" data-ng-show="updateDriver.submitted && updateCustomer.email.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Invalid Email Address</div>
+                <div class="alert alert-danger"  data-ng-show="updateDriver.submitted && updateCustomer.email.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Email is required.</div>
+              </div>
+              </div>
+              <div class="col-md-6 col-xs-6 md-push-left-half xs-push-left-half">
+               <div class="form-group js-mobile-country required mobile-number" data-ng-class="{
+                    'has-error': updateDriver.submitted && updateDriver.mobile.$invalid,
+                    'has-success':updateDriver.mobile.$valid}">
+                  <label class="control-label" for="mobile">State</label>
+                 
+                  <input data-ng-model="driver.d_state" class="form-control"  maxlength="10" type="text" value="" name="mobile" id="mobile" data-ng-pattern="/^[1-9]{1}[0-9]{9}$/" placeholder="(201) 555-5555" required>
+                  <div class="alert alert-danger"  data-ng-show="updateDriver.submitted && updateDriver.mobile.$error.required">
+                  <span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>
+                  Your Mobile Number?
+                  </div>
+                  <div class="alert alert-danger" data-ng-show="updateDriver.submitted && updateDriver.mobile.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Mobile number Invalid</div>
+              </div>
+              </div>
+              </div>
+          
+              <div class="row form-row">
+                  <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+                      <div class="form-group required " data-ng-class="{
+                    'has-error': updateDriver.submitted && updateDriver.city.$invalid,
+                    'has-success':  updateCustomer.city.$valid}">
+                          <label class="control-label" for="city">City</label>
+                          <input class="form-control" data-ng-model="driver.d_city" type="text" value="" name="city" id="city" placeholder="City" required>
+                          <div class="alert alert-danger"  data-ng-show="updateDriver.submitted && updateDriver.city.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>City where you live.</div>
+                        </div>
+                      </div>
+                  <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+                       <div class="form-group required" data-ng-class="{
+                    'has-error': updateDriver.submitted && updateDriver.zipCode.$invalid,
+                    'has-success':  updateDriver.zipCode.$valid}">
+                        <label class="control-label" for="zipcode">ZipCode</label>
+                        <input class="form-control" data-ng-model="driver.d_zipcode" type="text" value="" name="zipCode" id="zipCode" data-ng-pattern="^\\d{5}(-\\d{4})?$" placeholder="ZipCode" required>
+                        <div class="alert alert-danger"  data-ng-show="updateDriver.submitted && updateDriver.zipCode.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Postal Code is Required.</div>
+                        <div class="alert alert-danger" data-ng-show="updateDriver.submitted && updateDriver.zipCode.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Postal Code should be at least 5 digit format or 9 digit format</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row form-row">
+                  <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+                      <div class="form-group required " data-ng-class="{
+                    'has-error': updateDriver.submitted && updateDriver.city.$invalid,
+                    'has-success':  updateCustomer.city.$valid}">
+                          <label class="control-label" for="city">Car Name</label>
+                          <input class="form-control" data-ng-model="driver.d_car_name" type="text" value="" name="city" id="city" placeholder="City" required>
+                          <div class="alert alert-danger"  data-ng-show="updateDriver.submitted && updateDriver.city.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>City where you live.</div>
+                        </div>
+                      </div>
+                  <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+                       <div class="form-group required" data-ng-class="{
+                    'has-error': updateDriver.submitted && updateDriver.zipCode.$invalid,
+                    'has-success':  updateDriver.zipCode.$valid}">
+                        <label class="control-label" for="zipcode">Car Number</label>
+                        <input class="form-control" data-ng-model="driver.d_car_number" type="text" value="" name="zipCode" id="zipCode" data-ng-pattern="^\\d{5}(-\\d{4})?$" placeholder="ZipCode" required>
+                        <div class="alert alert-danger"  data-ng-show="updateDriver.submitted && updateDriver.zipCode.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Postal Code is Required.</div>
+                        <div class="alert alert-danger" data-ng-show="updateDriver.submitted && updateDriver.zipCode.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Postal Code should be at least 5 digit format or 9 digit format</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row">
+                 
+
+               <div class="col-md-6 col-xs-6 md-push-right-half sm-push-right-half xs-push-right-half">
+                <div class="form-group required " data-ng-class="{
+                    'has-error':updateDriver.submitted && updateDriver.password.$invalid,
+                    'has-success': updateDriver.password.$valid}">
+                <label  class=" control-label" for="password">Password</label>
+                <input class="form-control" type="password" value=""  data-ng-model="driver.d_password" name="password" id="password"  data-ng-pattern="/[a-zA-Z0-9]{5,}/" placeholder="At least 5 characters" required>
+                 <div class="alert alert-danger" data-ng-show="updateDriver.submitted && updateDriver.password.$error.pattern "><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Password should be at least 5 characters</div>
+                <div class="alert alert-danger"  data-ng-show="updateDriver.submitted && updateDriver.password.$error.required"><span class="glyphicon glyphicon-remove red" aria-hidden="true"></span>Password required.</div>
+              	</div>
+               </div>
+               <br>
+                <div class="form-group">
+                          <button type="submit" class="btn btn-info"  data-ng-click="updateDriver()">Update Account</button>
+                    </div>
+              </div>
+               </form>
+            <div class="sub-header"></div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+          <!--  <form action="/uploadCustImage" method="POST" enctype="multipart/form-data"> 
+					<form enctype="multipart/form-data">
+					<label for="profile-photo" class="control-label">Profile Photo</label>
+					
+					<input type="file" file-model="picture" data-ng-model="picture"  id="profile-photo" name="picture" class="hidden">
+					<label for="profile-photo" class="btn-default active" style="border:1px solid #D3D6DB">Set Picture</label>
+					<button type="submit" data-ng-click="uploadImage()">Upload</button> 
+					</form>  -->
+					<form name="photo" id="imageUploadForm" enctype="multipart/form-data" >
+					<label for="imageBrowse" class="control-label">Profile Photo</label>
+					
+					<input type="file" file-model="picture"  id="imageBrowse" name="picture" class="hidden">
+					<label for="imageBrowse" class="btn-default active" style="border:1px solid #D3D6DB">Set Picture</label>
+    
+    				<button type="submit" id="#uploadBtn" name="uploadBtn" >Upload</button>
+   				 </form>
+				<!-- 	<form  name="form">
+				 <input type="file" ngf-select ng-model="picture" name="picture"    
+             accept="image/*"  >
+  					<div class="btn btn-primary" data-ngf-select data-ng-model="picture" data-name="picture" data-ngf-pattern="'image/*'"
+    data-accept="image/*"  
+   >Select</div>
+    <button type="submit" data-ng-click="uploadImage(picture)">submit</button>
+    </form> -->
+					</div>
+           <div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                          <button type="submit" class="btn btn-info"  data-ng-click="deleteDriver()">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+      
+
+</div>
+			</div>
+        	</div>
+    </div>
+    </div>
+   
+   
+  
+    </div> 
+    
+	
+
+			
+			<!-- Prajwal Kondawar START -->
+		<!-- 	<button ng-click = "deleteRideBill()">delete ride</button>
+			
+			<input type="text" placeholder="Attribute Type" data-ng-model="attributeType">
+			<input type="text" placeholder="Attribute Value" data-ng-model="attributeValue">
+			<button data-ng-click = "searchBillByAttributes()">Search Bill</button>
+			
+			<!-- Prajwal Kondawar END -->
+		-->				
+
+
+    </div>
+<!-- Parveen changes	<div class="tab-content">
+			<div id="startRide" class="tab-pane fade in active">
+			<h2 class="sub-header">Starting Your Ride</h2>
+			<div id="map"></div>
+			</div>
+        	<div id="myTrips" class="tab-pane">
+        	<h2 class="sub-header">Your Trips</h2>
+			<h1>HI</h1>
+        	</div>
+        	<div id="myProfile" class="tab-pane">
+        	<h2 class="sub-header">Update Your Profile</h2>
+			<h1>HIII</h1>
+        	</div>
+        </div>
+-->
+        </div>
+      </div>
+    </div>
+  </body>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+ <script type="text/javascript" src= "../resources/driverMap.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgYPa3rFTfvxYkwI6EQxD12w5zKmbC4I0&signed_in=true&libraries=places&callback=initMap"
+        async defer></script>
+<script>
+
+var app = angular.module('driverHomeApp', []);
+app.controller('driverHomeController', function ($http,$scope,$parse) 
+{       $scope.currentride=false;
+	$http({
+        method: 'POST',
+        url: '/getCurrentRide',
+        data:{"user_type":"DRIV"}
+      }). then(function(response) {
+    	 
+    	 
+    	 if(response.data.result[0])
+    	 {
+    		 var d1= new Date(response.data.result[0].temp_drop_off_date);
+    		 var tzoffset = d1.getTimezoneOffset() * 60000; //offset in milliseconds
+    			var localISOTime = (new Date(d1- tzoffset)).toISOString().substring(0, 19).replace('T', ' ');
+    		 
+    		 $scope.currentride=true;
+    		 $scope.currentRide={customer_first_name:response.data.result[0].customer_first_name,
+    				 source_city:response.data.result[0].source_city,
+    				 destination_city:response.data.result[0].destination_city,
+    				 customer_id:response.data.result[0].customer_id,
+    				 ride_id:response.data.result[0].ride_id,
+    				 temp_drop_off_date:localISOTime,
+    				 ride_speed	:response.data.result[0].ride_speed,
+    				 ride_duration:response.data.result[0].ride_duration,
+    				 ride_distance:response.data.result[0].ride_distance
+    				
+    		 };
+    	 
+    	 }
+      });
+	$scope.myRides = function () {
+		$scope.rides=[];
+		$http({
+	        method: 'GET',
+	        url: '/driverRideHistory'
+	        
+	      }). then(function(response) {console.log(response.data);
+	    	  angular.forEach(response.data,function(rides)
+	    		{
+	    		  $scope.rides.push({pickUpDate:new Date(rides.pick_up_date).toISOString(),
+	    			  customer:rides.customer_last_name,
+	    			  fare:rides.total_fare,
+	    			  city:rides.destination_city,
+	    			  customer_first_name:rides.customer_first_name,
+	    			  source_city:rides.source_city,
+	    			  credit_card:rides.c_cc_number,
+	    			  base_fare: rides.base_fare,
+	    			 time_fare:rides.time_fare,
+	    			  	distance_fare:rides.distance_fare,
+	    				speed:rides.ride_speed,
+	    				duration:rides.ride_duration,
+	    					distance:rides.ride_distance
+	    			  
+	    		  }); 
+	    		});
+	      },function(response){
+	      alert(response.data);
+	      });
+	}
+	$scope.profile_pic="default.jpeg";
+	$http({
+        method: 'GET',
+        url: '/getdriverDetails',
+        
+      }). then(function(response) {
+    	  $scope.driver=response.data[0];
+      });
+	$scope.setLocation=function(){
+		alert(mylat);
+		$http({
+	        method: 'POST',
+	        url: '/setLocation',
+	        data:{"driverLat":mylat,"driverLong":mylng}
+	      }). then(function(response) {
+	    	  alert("Your Location Set");
+	      });
+	}
+	$scope.endRide = function () {
+		$http({
+	        method: 'POST',
+	        url: '/endRide',
+	        data:{
+        	  	"ride_id" : $scope.currentRide.ride_id,
+        	  	"customer_id" :$scope.currentRide.customer_id,
+        	  	"temp_drop_off_date" : $scope.currentRide.temp_drop_off_date,
+        	        "ride_speed":$scope.currentRide.ride_speed,
+        	        "ride_distance":$scope.currentRide.ride_distance,
+        	        "ride_duration":$scope.currentRide.ride_duration
+        	        
+        	  	}
+	      }). then(function(response) {
+	    	  $scope.currentride=false;
+	      });
+	  
+		
+	    console.log("ride ended");
+	}
+	$scope.startRide = function () {
+		
+	      $http({
+	      method: 'Post',
+	          url: '/updatedriver',
+	          data:{
+	              "driver_id": "4321" ,
+			      "driver_first_name": "Ankit",
+			      "driver_last_name": "Rajput",
+			      "source_city": source_city,
+			      "destination_city": destination_city}
+	       }).success(function(response){
+	           alert("Request Sent Successfully");
+	         console.log("connResult:>>"+$scope.workInfoResults);
+	          }).error(function(error){
+	          alert("error in friends");
+	      });
+	}
+});
+</script>
+</html>
