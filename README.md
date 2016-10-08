@@ -1,9 +1,26 @@
-# UberTaxiService
-
-##Taxi Service Application using RabbitMQ, Node.js, Redis, AngularJS, MongoDB, MySql
+#Taxi Service Application
 
 
-###project Architecture
+##Project Description
+► Multi Tier scalable web application which helps customers to book taxi on demand. Provides  functionality similar to Uber Taxi Services<br>
+► Modules:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Customer: Reserves Taxi Services from source to destination. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Driver: Responds to customer's request and drives him to his destination <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Admin: Monitors all drivers, customers, and stats like area wise revenue, number of rides in a particular area<br>
+► Google Maps shows drivers available in 10 KM radius to the customer and he can see reviews of customer
+► Dynamic price surge algorithm
+
+
+##Technology Stack
+► BackEnd: Node.js, ExpressJS, RESTful Web Service<br>
+► Middleware: RabbitMQ<br>
+► Caching: REDIS, Database Connection Pooling<br>
+► FrontEnd: AngularJS, BootStrap, Google Maps, amCharts, HTML, CSS<br>
+► Database: MySQL, MongoDB<br>
+► Load and Performance Testing: JMeter<br>
+  
+
+##Project Architecture
 ![Project Architecture](screenshots/architecture.png "Architecture:")
 
 
